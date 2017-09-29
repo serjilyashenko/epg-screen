@@ -1,1 +1,2 @@
-export const ACTION_1 = 'ACTION_1';
+export const REQUEST_EPG = 'REQUEST_EPG';
+export const RECEIVE_EPG = 'RECEIVE_EPG';

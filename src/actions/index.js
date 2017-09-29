@@ -1,5 +1,18 @@
+import {HOST} from '../constants/config';
 import {
-  ACTION_1,
+  REQUEST_EPG,
+  RECEIVE_EPG,
 } from "../constants/action-types";
 
-export const action1 = () => ({type: ACTION_1});
+export const getEpg = () => (dispatch) => {
+  dispatch({type: REQUEST_EPG});
+
+  return fetch(`${HOST}/epg`)
+    .then(response => response.json())
+    .then(payload => dispatch(receiveEpg(payload)));
+};
+
+export const receiveEpg = payload => ({
+    payload,
+    type: RECEIVE_EPG,
+  });

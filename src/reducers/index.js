@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import entities from './entities';
+import epg from './epg';
 
 export default combineReducers({
-  entities,
+  epg,
 })

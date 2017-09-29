@@ -1,10 +1,11 @@
+const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
-  context: __dirname + '/src',
+  context: path.join(__dirname, 'src'),
   entry: './app.jsx',
 
   output: {
@@ -13,6 +14,9 @@ module.exports = {
   },
 
   resolve: {
+    root: [
+      __dirname + "/node_modules",
+    ],
     extensions: ['', '.js', '.jsx'],
   },
 
@@ -25,7 +29,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
-      title: 'React-Redux Template',
+      title: 'EPG Screen',
       template: './index.ejs',
       filename: './index.html',
       chunks: ['main'],
@@ -70,6 +74,7 @@ module.exports = {
   },
 
   devServer: {
+    port: 8081,
     inline: true,
     hot: true,
   }
