@@ -1,20 +1,34 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {List} from 'immutable';
 import PropTypes from 'prop-types';
 import ChannelItem from './ChannelItem';
+import TimeLine from './TimeLine';
+import {SCALE} from '../constants/settings';
 
-class ChannelList extends Component {
+class ChannelList extends PureComponent {
+
+  getContainerStyles() {
+    const width = 24 * 60 * SCALE;
+
+    return {width};
+  }
 
   render() {
-    const {channels} = this.props;
-    const channelElements = channels.map(channel => <ChannelItem channel={channel} key={channel.get('id')} />);
+    const {channels, currentTime, currentPosition} = this.props;
+    const containerStyles = this.getContainerStyles();
+    const channelElements = channels.map(channel => {
+      return <ChannelItem currentTime={currentTime} channel={channel} key={channel.get('id')}/>
+    });
 
     return (
-      <div>
-        <h2>Channel List</h2>
-        <ul>
+      <div className="timetable__container" style={containerStyles}>
+        <div className="timetable__header">
+          <TimeLine channels={channels}/>
+        </div>
+        <div className="timetable__body">
           {channelElements}
-        </ul>
+        </div>
+        <div className="timetable__current" style={{left: currentPosition}}> </div>
       </div>
     );
   }
@@ -22,6 +36,8 @@ class ChannelList extends Component {
 
 ChannelList.propTypes = {
   channels: PropTypes.instanceOf(List).isRequired,
+  currentTime: PropTypes.string.isRequired,
+  currentPosition: PropTypes.number.isRequired,
 };
 
 export default ChannelList

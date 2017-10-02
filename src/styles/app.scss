@@ -1,0 +1,168 @@
+body, html {
+  padding: 0;
+  margin: 0;
+  font: 12px/1.4 Arial, Tahoma, sans-serif;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.timetable {
+  position: relative;
+  color: #fff;
+  background: #222;
+
+  &__scrollable {
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  &__captions {
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    background: #222;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+
+    &-item {
+      height: 60px;
+      padding: 5px 5px;
+      text-align: center;
+      line-height: 50px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__container {
+    padding-left: 60px;
+    box-sizing: content-box;
+    position: relative;
+  }
+
+  &__header {
+    margin-left: -60px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 15;
+
+    &-row {
+      height: 25px;
+      margin-left: 60px;
+      white-space: nowrap;
+      font-size: 0;
+    }
+
+    &-cell {
+      width: 300px;
+      height: 100%;
+      font-size: 12px;
+      line-height: 25px;
+      display: inline-block;
+      position: relative;
+
+      &:after {
+        content: '';
+        height: 5px;
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        pointer-events: none;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  &__body {
+    position: relative;
+
+    &-row {
+      height: 60px;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    &-cell {
+      padding: 10px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      display: inline-block;
+      overflow: hidden;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+      &_now {
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+  }
+
+  &__broadcast {
+    font-size: 11px;
+    line-height: 13px;
+
+    &-name {
+      margin: 0 0 2px;
+      max-height: 27px;
+      overflow: hidden;
+    }
+
+    &-time {
+      color: #aaa;
+      white-space: nowrap;
+    }
+  }
+
+  &__current {
+    width: 1px;
+    margin-left: 60px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: rgba(220, 165, 60, 0.5);
+    transition: left 0.5s;
+
+    &:before {
+      content: '';
+      width: 3px;
+      height: 25px;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -1px;
+      border-radius: 2px;
+      background: rgba(220, 165, 60, 0.7);
+    }
+  }
+
+  &__now-button {
+    padding: 7px 10px;
+    display: block;
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    color: #fff;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    background: orange; // можно пипеткой узнать цвет
+    border-radius: 5px;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
