@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production webpack",
+    "start": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development webpack --display-error-details",
     "dev-server": "cross-env NODE_ENV=development webpack-dev-server",
     "update:api-epg": "cd ./node_modules/nm-mock-api && node ./scripts/updateEpg.js",
     "start:api-server": "./node_modules/.bin/osprey-mock-service -f ./node_modules/nm-mock-api/demo.raml -p 1337 --cors",
-    "start:mock-api": "npm run update:api-epg && npm run start:api-server"
+    "start:mock-api": "npm run update:api-epg && npm run start:api-server",
+    "static": "static-server ./public --port 8080"
   },
   "keywords": [],
   "author": "",
@@ -31,8 +32,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
     "html-webpack-plugin": "^2.30.1",
-    "install": "^0.10.1",
     "immutable": "^3.7.6",
+    "install": "^0.10.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "nm-mock-api": "git+https://github.com/NoriginMedia/mock-api#cloudberry",
@@ -44,6 +45,7 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
+    "static-server": "^2.0.5",
     "style-loader": "^0.13.0",
     "webpack": "^1.15.0",
     "webpack-dev-server": "^1.14.1"

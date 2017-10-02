@@ -56,11 +56,16 @@ class EpgScreen extends Component {
     document.getElementById('timetable__scrollable').scrollLeft = currentPosition - window.innerWidth / 2;
   }
 
+  renderNowButton() {
+    return <button className="timetable__now-button" onClick={this.moveToCurrentPosition}>NOW</button>;
+  }
+
   render() {
     const {epg} = this.props;
     const {currentTime} = this.state;
     const currentPosition = this.getCurrentPosition();
     const channels = epg.get('channels') || List();
+    const nowButton = channels.size ? this.renderNowButton() : null;
 
     return (
       <div>
@@ -70,7 +75,7 @@ class EpgScreen extends Component {
             <ChannelCaptions channels={channels}/>
             <ChannelList channels={channels} currentTime={currentTime} currentPosition={currentPosition} />
           </div>
-          <button className="timetable__now-button" onClick={this.moveToCurrentPosition}>NOW</button>
+          {nowButton}
         </div>
       </div>
     );
