@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {List} from 'immutable';
 import PropTypes from 'prop-types';
-import {SCALE} from '../constants/settings';
+import {SCALE, MINS_IN_AN_HOUR, HOURS_IN_A_DAY} from '../constants/settings';
 
 class TimeLine extends Component {
 
   render() {
-    const hours = new Array(24).fill(0).map((item, index) => index);
-    const cellStyles = {width: 60 * SCALE};
+    const hours = new Array(HOURS_IN_A_DAY).fill(null).map((item, index) => index);
+    const width = MINS_IN_AN_HOUR * SCALE;
+    const cellStyles = {width};
     const hoursElements = hours.map(item => {
       return <span className="timetable__header-cell" style={cellStyles} key={item}>{item}:00</span>
     });

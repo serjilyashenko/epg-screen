@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {Map} from 'immutable';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import {SCALE} from '../constants/settings';
+import {SCALE, MINS_IN_AN_HOUR, MILLISECONDS_IN_A_SECOND} from '../constants/settings';
 import classNames from 'classnames';
 
 class Program extends PureComponent {
@@ -11,10 +11,10 @@ class Program extends PureComponent {
     const {program} = this.props;
     const start = moment(program.get('start'));
     const end = moment(program.get('end'));
-    const durationMs = end.diff(start);
+    const durationInSeconds = end.diff(start) / MILLISECONDS_IN_A_SECOND;
 
-    const width = Math.floor(durationMs * SCALE / 60000);
-    const left = (start.hours() * 60 + start.minutes()) * SCALE;
+    const width = Math.floor(durationInSeconds * SCALE / MINS_IN_AN_HOUR);
+    const left = (start.hours() * MINS_IN_AN_HOUR + start.minutes()) * SCALE;
 
     return {
       left,

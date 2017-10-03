@@ -7,7 +7,7 @@ import ChannelCaptions from '../components/ChannelCaptions';
 import ChannelList from '../components/ChannelList';
 import * as Actions from '../actions';
 import moment from 'moment';
-import {SCALE} from '../constants/settings';
+import {SCALE, MINS_IN_AN_HOUR, TIME_ACCURACY} from '../constants/settings';
 
 class EpgScreen extends Component {
 
@@ -42,13 +42,13 @@ class EpgScreen extends Component {
 
       this.setState({currentTime: moment().seconds(0).format()});
       this.timer = this.setTimer();
-    }, 1000);
+    }, TIME_ACCURACY);
   }
 
   getCurrentPosition() {
     const {currentTime} = this.state;
     const currentTimeMoment = moment(currentTime);
-    return (currentTimeMoment.hours() * 60 + currentTimeMoment.minutes()) * SCALE;
+    return (currentTimeMoment.hours() * MINS_IN_AN_HOUR + currentTimeMoment.minutes()) * SCALE;
   }
 
   moveToCurrentPosition() {

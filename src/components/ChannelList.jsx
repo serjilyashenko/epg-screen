@@ -3,12 +3,12 @@ import {List} from 'immutable';
 import PropTypes from 'prop-types';
 import ChannelItem from './ChannelItem';
 import TimeLine from './TimeLine';
-import {SCALE} from '../constants/settings';
+import {SCALE, MINUTES_IN_A_DAY} from '../constants/settings';
 
 class ChannelList extends PureComponent {
 
   getContainerStyles() {
-    const width = 24 * 60 * SCALE;
+    const width = MINUTES_IN_A_DAY * SCALE;
 
     return {width};
   }

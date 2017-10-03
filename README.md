@@ -8,6 +8,9 @@ for a day.
 * A marker indicates current time and reloads in real time.
 * Current TV shows are highlighted.
 * You can focus on current time using `NOW` button.
+* Application is scalable for landscape.
+* There is no any serious Redux layer in the application structure
+because of the application has only one container component.
 
 **Note:** The application is a demonstration instance. It works correctly in case of a TV schedule
 for the current day.
